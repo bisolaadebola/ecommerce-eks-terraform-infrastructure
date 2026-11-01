@@ -35,7 +35,7 @@ output "kubeconfig_download_command" {
 # ---- Ingress ----
 output "load_balancer_hostname" {
   description = "Point a CNAME record for your domain at this hostname"
-  value       = data.kubernetes_service_v1.nginx_ingress.status[0].load_balancer[0].ingress[0].hostname
+ value = try(data.kubernetes_service_v1.nginx_ingress.status[0].load_balancer[0].ingress[0].hostname, "")
 }
 
 # ---- Argo CD ----
