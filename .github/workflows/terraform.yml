@@ -78,7 +78,7 @@ jobs:
   plan-apply:
     name: terraform plan and apply
     needs: [sonar-scan]
-    if: ${{ !cancelled() && !inputs.destroy }}
+    if: ${{ github.event_name == 'workflow_dispatch' && !inputs.destroy }}
     runs-on: ubuntu-latest
     timeout-minutes: 60
     steps:
